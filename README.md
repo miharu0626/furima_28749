@@ -24,8 +24,13 @@
 | user              | references | null: false, foreign_key: true |
 | item_name         | string     | null: false                    |
 | image             | string     | null: false                    |
-| detail            | string     | null: false                    |
-| price             | string     | null: false                    |
+| detail            | text       | null: false                    |
+| price             | integer    | null: false                    |
+| category          | integer    | null: false                    |
+| item_status       | integer    | null: false                    |
+| shipping_fee      | integer    | null: false                    |
+| shipping_location | integer    | null: false                    |
+| shipping_date     | integer    | null: false                    |
 
 ### Association
 - belongs_to :user
@@ -37,10 +42,6 @@
 | ----------------- | ---------- | ------------------------------ |
 | user              | references | null: false, foreign_key: true |
 | item              | references | null: false, foreign_key: true |
-| card_num          | string     | null: false                    |
-| valid_month       | string     | null: false                    |
-| valid_year        | string     | null: false                    |
-| security_code     | string     | null: false                    |
 
 ### Association
 - has_many :items
@@ -53,6 +54,7 @@
 | ----------------- | ---------- | ------------------------------ |
 | purchase          | references | null: false, foreign_key: true |
 | post_code         | string     | null: false                    |
+| prefecture        | integer    | null: false                    |
 | city              | string     | null: false                    |
 | block             | string     | null: false                    |
 | add_num           | string     | null: false                    |

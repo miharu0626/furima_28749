@@ -5,10 +5,18 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, 
+                                                       :email,
+                                                       :password,
+                                                       :password_confirmation,
+                                                       :family_name,
+                                                       :given_name,
+                                                       :family_name_kana,
+                                                       :given_name_kana,
+                                                       :birth_day,])
   end
 
-  # private # ここより以下は不要なのかもしれない
+  # private # 以下は不要なのかもしれない
 
   # def basic_auth
   #  authenticate_or_request_with_http_basic do |username, password|

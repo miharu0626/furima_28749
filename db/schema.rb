@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_30_140755) do
+ActiveRecord::Schema.define(version: 2020_09_01_122545) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -36,14 +36,13 @@ ActiveRecord::Schema.define(version: 2020_08_30_140755) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", null: false
-    t.string "image", null: false
     t.text "detail", null: false
     t.integer "price", null: false
-    t.integer "category", null: false
-    t.integer "item_status", null: false
-    t.integer "shipping_fee", null: false
-    t.integer "shipping_location", null: false
-    t.integer "shipping_date", null: false
+    t.integer "category_id", null: false
+    t.integer "item_status_id", null: false
+    t.integer "shipping_fee_id", null: false
+    t.integer "shipping_location_id", null: false
+    t.integer "shipping_date_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"

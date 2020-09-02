@@ -15,12 +15,12 @@ class Item < ApplicationRecord
   end
 
   #各選択が「---」の時は保存できないようにする
-  with_options numericality: { other_than: 1 } do
-    validates :category
-    validates :item_status
-    validates :shipping_fee
-    validates :shipping_location
-    validates :shipping_date
+  with_options numericality: { other_than: 0 } do
+    validates :category_id
+    validates :item_status_id
+    validates :shipping_fee_id
+    validates :shipping_location_id
+    validates :shipping_date_id
   end
 
 

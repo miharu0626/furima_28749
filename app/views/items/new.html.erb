@@ -1,4 +1,7 @@
 <div class="items-sell-contents">
+  <%# JSの記述 %>
+  <script src="index.js"></script>
+
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
   </header>
@@ -89,6 +92,10 @@
       </div>
       <%# /配送について %>
 
+
+
+
+
       <%# 販売価格 %>
       <div class="sell-price">
         <div class="weight-bold-text question-text">
@@ -103,6 +110,7 @@
             </div>
             <span class="sell-yen">¥</span>
             <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
+            <%# <li class="background-red" id="lists">リスト %>
           </div>
           <div class="price-content">
             <span>販売手数料 (10%)</span>
@@ -119,6 +127,11 @@
         </div>
       </div>
       <%# /販売価格 %>
+
+
+
+
+
 
       <%# 注意書き %>
       <div class="caution">

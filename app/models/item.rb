@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   #空の投稿を保存できないようにする
   with_options presence: true do
     validates :name
-    validates :image
+    # validates :image
     validates :detail
     validates :price, format: { with: /\A[0-9]+\z/ }
   end

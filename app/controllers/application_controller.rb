@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, 
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname,
                                                        :email,
                                                        :password,
                                                        :password_confirmation,
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
                                                        :given_name,
                                                        :family_name_kana,
                                                        :given_name_kana,
-                                                       :birth_day,])
+                                                       :birth_day])
   end
 
   # private # 以下は不要なのかもしれない

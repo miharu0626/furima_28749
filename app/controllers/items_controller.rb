@@ -1,11 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show]
   # ログインしていないユーザーが出品ボタン押下しても、ログインへ連れて行かれる
-  before_action :move_to_new, only: [:new, :show]
-
-  def index
-    @item = Item.all
-  end
+  before_action :move_to_new, only: [:new,]
 
   def new
     @item = Item.new
@@ -20,30 +15,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    item = Item.find(params[:id])
-    item.destroy
-  end
-
-  def edit
-  end
-
-  def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-  end
-
-  def show
-  end
-
   private
 
   def item_params
     params.require(:item).permit(:name, :detail, :category_id, :item_status_id, :shipping_fee_id, :shipping_location_id, :shipping_date_id, :price, :image).merge(user_id: current_user.id)
-  end
-
-  def set_item
-    @item = Item.find(params[:id])
   end
 
   # ログインしていないユーザーが出品ボタン押下しても、ログインへ連れて行かれる

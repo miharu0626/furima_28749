@@ -11,6 +11,12 @@ RSpec.describe Item, type: :model do
       expect(@item).to be_valid
     end
 
+    it 'imageが空では登録できないこと' do
+      @item.image = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Image can't be blank")
+    end
+
     it 'nameが空では登録できないこと' do
       @item.name = nil
       @item.valid?
@@ -24,33 +30,33 @@ RSpec.describe Item, type: :model do
     end
 
     it 'category_idが「---」では登録できないこと' do
-      @item.category_id = '---'
+      @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Category is not a number')
+      expect(@item.errors.full_messages).to include('Category must be other than 1')
     end
 
     it 'item_status_idが「---」では登録できないこと' do
-      @item.item_status_id = '---'
+      @item.item_status_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Item status is not a number')
+      expect(@item.errors.full_messages).to include('Item status must be other than 1')
     end
 
     it 'shipping_fee_idが「---」では登録できないこと' do
-      @item.shipping_fee_id = '---'
+      @item.shipping_fee_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Shipping fee is not a number')
+      expect(@item.errors.full_messages).to include('Shipping fee must be other than 1')
     end
 
     it 'shipping_location_idが「---」では登録できないこと' do
-      @item.shipping_location_id = '---'
+      @item.shipping_location_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Shipping location is not a number')
+      expect(@item.errors.full_messages).to include('Shipping location must be other than 1')
     end
 
     it 'shipping_date_idが「---」では登録できないこと' do
-      @item.shipping_date_id = '---'
+      @item.shipping_date_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Shipping date is not a number')
+      expect(@item.errors.full_messages).to include('Shipping date must be other than 1')
     end
 
     it 'priceが空では登録できないこと' do
@@ -60,7 +66,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'priceが¥300~¥9,999,999の間であること(下限)' do
-      @item.price = 15
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include('Price is not included in the list')
     end

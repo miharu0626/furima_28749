@@ -10,7 +10,7 @@ app/assets/stylesheets/items/new.css %>
     <%= form_with local: true do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%= form_with model: @item, url: item_path, id: 'edit_item', class: 'registration-main', local: true  do |f| %>
+    <%= form_with model: (@item, url: item_path, id: 'edit_item', class: 'registration-main', local: true ) do |f| %>
     <% render 'shared/error_messages', model: f.object %>
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 

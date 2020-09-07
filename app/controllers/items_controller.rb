@@ -15,9 +15,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def index
-  #   @tweets = Tweet.all
-  # end
+  def index
+    @items = Item.all
+  end
 
   private
 

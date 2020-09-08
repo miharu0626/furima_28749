@@ -72,7 +72,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'priceが¥300~¥9,999,999の間であること(上限)' do
-      @item.price = 10000000
+      @item.price = 10_000_000
       @item.valid?
       expect(@item.errors.full_messages).to include('Price is not included in the list')
     end

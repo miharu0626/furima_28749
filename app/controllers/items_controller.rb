@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show]
   # ログインしていないユーザーが出品ボタン押下しても、ログインへ連れて行かれる
-  before_action :move_to_new, only: [:new,]
+  before_action :move_to_new, only: [:new]
 
   def new
     @item = Item.new
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   # def destroy

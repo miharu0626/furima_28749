@@ -36,15 +36,15 @@ class ItemsController < ApplicationController
   def show
   end
 
-  # def update
-  #   @item = Item.find(params[:id])
-  #   @item.update(item_params)
-  #   if @item.save
-  #     redirect_to item_path(@item)
-  #   else
-  #     render :new
-  #   end
-  # end
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      render :new
+    end
+  end
 
   private
 

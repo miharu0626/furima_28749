@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show]
+  before_action :set_item, only: [:edit, :show, :update]
   # ログインしていないユーザーが出品ボタン押下しても、ログインへ連れて行かれる
   before_action :move_to_new, only: [:new]
 
@@ -30,19 +30,17 @@ class ItemsController < ApplicationController
   #   end
   # end
 
-  # def edit
-  # end
+  def edit
+  end
 
   def show
   end
 
   def update
-    @item = Item.find(params[:id])
-    @item.update(item_params)
-    if @item.save
+    if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      render :new
+      render :edit
     end
   end
 

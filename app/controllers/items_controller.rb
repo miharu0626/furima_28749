@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show, :update]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
   # ログインしていないユーザーが出品ボタン押下しても、ログインへ連れて行かれる
   before_action :move_to_new, only: [:new]
 
@@ -21,7 +21,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     @item.destroy
     if @item.destroy
       redirect_to root_path

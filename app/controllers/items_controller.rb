@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show]
+  before_action :set_item, only: [:edit, :show, :update]
   # ログインしていないユーザーが出品ボタン押下しても、ログインへ連れて行かれる
-  before_action :move_to_new, only: [:new,]
+  before_action :move_to_new, only: [:new]
 
   def new
     @item = Item.new
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   # def destroy
@@ -30,21 +30,19 @@ class ItemsController < ApplicationController
   #   end
   # end
 
-  # def edit
-  # end
+  def edit
+  end
 
   def show
   end
 
-  # def update
-  #   @item = Item.find(params[:id])
-  #   @item.update(item_params)
-  #   if @item.save
-  #     redirect_to item_path(@item)
-  #   else
-  #     render :new
-  #   end
-  # end
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      render :edit
+    end
+  end
 
   private
 

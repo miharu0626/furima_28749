@@ -20,15 +20,15 @@ class ItemsController < ApplicationController
     @items = Item.all.order('created_at DESC')
   end
 
-  # def destroy
-  #   @item = Item.find(params[:id])
-  #   @item.destroy
-  #   if @item.destroy
-  #     redirect_to root_path
-  #   else
-  #     render :new
-  #   end
-  # end
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    if @item.destroy
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
 
   
   def edit

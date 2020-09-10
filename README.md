@@ -32,8 +32,14 @@
 | shipping_date_id     | integer    | null: false                    |
 
 ### Association
+- belongs_to_active_hash :category
+- belongs_to_active_hash :item_status
+- belongs_to_active_hash :shipping_fee
+- belongs_to_active_hash :shipping_location
+- belongs_to_active_hash :shipping_date
 - belongs_to :user
 - has_one :purchase
+- has_one_attached :image
 
 ## purchasesテーブル
 
@@ -53,12 +59,12 @@
 | ----------------- | ---------- | ------------------------------ |
 | purchase          | references | null: false, foreign_key: true |
 | post_code         | string     | null: false                    |
-| prefecture        | integer    | null: false                    |
+| prefecture_id     | integer    | null: false                    |
 | city              | string     | null: false                    |
-| block             | string     | null: false                    |
 | add_num           | string     | null: false                    |
 | bld_name          | string     | null: true                     |
 | phone_num         | string     | null: false                    |
 
 ### Association
+- belongs_to_active_hash :shipping_location
 - belongs_to :purchase

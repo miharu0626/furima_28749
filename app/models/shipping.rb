@@ -9,7 +9,10 @@ with_options presence: true do
   validates :city
   validates :add_num
   validates :phone_num
+  validates :token
 end
+
+
 
   belongs_to :purchase
 end

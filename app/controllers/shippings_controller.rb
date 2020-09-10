@@ -1,14 +1,15 @@
 class ShippingsController < ApplicationController
-
+  before_action :set_item
+  
   def new
     @shipping = Shipping.new
   end
 
   def create
     @shipping = Shipping.new(shipping_params)
-    if @order.valid?
+    if @shipping.valid?
       pay_item
-      @order.save
+      @shipping.save
       return redirect_to root_path
     else
       render :index
@@ -32,5 +33,9 @@ class ShippingsController < ApplicationController
       card: shipping_params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類(日本円)
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end

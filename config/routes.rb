@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     resources :shippings, only: [:new, :create, :index]
   end
   
-  resources :purchases, only: [:create]
+  # resources :purchases, only: [:create]
 
 end

@@ -7,7 +7,7 @@ class CreateShippings < ActiveRecord::Migration[6.0]
       t.string     :city,          null: false
       t.string     :add_num,       null: false
       t.string     :bld_name,      null: false
-      t.integer    :phone_num,     null: false
+      t.string     :phone_num,     null: false
 
       t.timestamps
     end

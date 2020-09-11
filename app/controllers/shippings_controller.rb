@@ -1,12 +1,12 @@
 class ShippingsController < ApplicationController
-  before_action :set_item
-  
-  def new
-    @shipping = Shipping.new
+  before_action :set_item, only: [:index, :create]
+
+  def index
+    @shipping = ShippingForm.new
   end
 
   def create
-    @shipping = Shipping.new(shipping_params)
+    @shipping = ShippingForm.new(shipping_params)
     if @shipping.valid?
       pay_item
       @shipping.save
@@ -16,26 +16,27 @@ class ShippingsController < ApplicationController
     end
   end
 
-  def index
-    @shipping = Shipping.new
-  end
+
+
 
   private
 
+
   def shipping_params
-    params.require(:shipping).permit(:post_code, :prefecture_id, :city, :add_num, :bld_name, :phone_num, :token)
+    params.permit(:post_code, :prefecture_id, :city, :add_num, :bld_name, :phone_num, :item_id, :token).merge(user_id: current_user.id)
   end
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      # amount: order_params[:price],  # 商品の値段
-      card: shipping_params[:token],    # カードトークン
-      currency:'jpy'                 # 通貨の種類(日本円)
+      amount: @item.price,
+      card: params[:token],
+      currency:'jpy'
     )
   end
 
   def set_item
     @item = Item.find(params[:item_id])
   end
+
 end

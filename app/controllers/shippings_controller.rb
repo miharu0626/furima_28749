@@ -1,5 +1,6 @@
 class ShippingsController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
 
   def index
     @shipping = ShippingForm.new
@@ -15,8 +16,6 @@ class ShippingsController < ApplicationController
       render :index
     end
   end
-
-
 
 
   private
@@ -37,6 +36,12 @@ class ShippingsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def move_to_index
+    if @item.purchase != nil || user_signed_in? && current_user.id == @item.user_id 
+      redirect_to root_path
+    end
   end
 
 end

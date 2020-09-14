@@ -11,26 +11,24 @@ class ShippingsController < ApplicationController
     if @shipping.valid?
       pay_item
       @shipping.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render :index
     end
   end
 
-
   private
-
 
   def shipping_params
     params.permit(:post_code, :prefecture_id, :city, :add_num, :bld_name, :phone_num, :item_id, :token).merge(user_id: current_user.id)
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
 
@@ -39,9 +37,6 @@ class ShippingsController < ApplicationController
   end
 
   def move_to_index
-    if @item.purchase != nil || user_signed_in? && current_user.id == @item.user_id 
-      redirect_to root_path
-    end
+    redirect_to root_path if !@item.purchase.nil? || user_signed_in? && current_user.id == @item.user_id
   end
-
 end

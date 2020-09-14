@@ -11,7 +11,7 @@ RSpec.describe ShippingForm, type: :model do
       @shipping_form = FactoryBot.build(:shipping_form, user_id: @buyer.id, item_id: @item.id)
       sleep(5)
     end
-    
+
     it 'post_codeと、city、add_num、phone_numが存在すれば登録できること' do
       expect(@shipping_form).to be_valid
     end
@@ -25,7 +25,7 @@ RSpec.describe ShippingForm, type: :model do
     it 'post_codeが半角のハイフンを含んだ正しい形式でないと登録できないこと' do
       @shipping_form.post_code = /\A[0-9]{3}-[0-9]{4}\z/
       @shipping_form.valid?
-      expect(@shipping_form.errors.full_messages).to include("Post code is invalid")
+      expect(@shipping_form.errors.full_messages).to include('Post code is invalid')
     end
 
     it 'cityが空では登録できないこと' do
@@ -35,9 +35,9 @@ RSpec.describe ShippingForm, type: :model do
     end
 
     it 'cityが全角日本語でないと保存できないこと' do
-      @shipping_form.city = "tokyo"
+      @shipping_form.city = 'tokyo'
       @shipping_form.valid?
-      expect(@shipping_form.errors.full_messages).to include("City is invalid")
+      expect(@shipping_form.errors.full_messages).to include('City is invalid')
     end
 
     it 'add_numが空では登録できないこと' do
@@ -60,7 +60,7 @@ RSpec.describe ShippingForm, type: :model do
     it 'phone_numにはハイフンは不要で、11桁もしくは10桁であること' do
       @shipping_form.phone_num = /\A\d{10,11}\z/
       @shipping_form.valid?
-      expect(@shipping_form.errors.full_messages).to include("Phone num is invalid")
+      expect(@shipping_form.errors.full_messages).to include('Phone num is invalid')
     end
 
     it 'prefecture_idが「---」では登録できないこと' do
@@ -68,7 +68,5 @@ RSpec.describe ShippingForm, type: :model do
       @shipping_form.valid?
       expect(@shipping_form.errors.full_messages).to include('Prefecture must be other than 1')
     end
-
-
   end
 end

@@ -68,3 +68,4 @@
 ### Association
 - belongs_to_active_hash :shipping_location
 - belongs_to :purchase
+

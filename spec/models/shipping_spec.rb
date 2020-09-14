@@ -23,7 +23,7 @@ RSpec.describe ShippingForm, type: :model do
     end
 
     it 'post_codeが半角のハイフンを含んだ正しい形式でないと登録できないこと' do
-      @shipping_form.post_code = /\A[0-9]{3}-[0-9]{4}\z/
+      @shipping_form.post_code = '1066137'
       @shipping_form.valid?
       expect(@shipping_form.errors.full_messages).to include('Post code is invalid')
     end
@@ -58,7 +58,7 @@ RSpec.describe ShippingForm, type: :model do
     end
 
     it 'phone_numにはハイフンは不要で、11桁もしくは10桁であること' do
-      @shipping_form.phone_num = /\A\d{10,11}\z/
+      @shipping_form.phone_num = '03-3581-4321'
       @shipping_form.valid?
       expect(@shipping_form.errors.full_messages).to include('Phone num is invalid')
     end
